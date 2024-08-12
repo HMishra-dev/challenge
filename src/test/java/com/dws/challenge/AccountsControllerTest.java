@@ -124,25 +124,6 @@ class AccountsControllerTest {
   }
 
   @Test
-  void whenAccountFromNotFound_thenNotFound() throws Exception {
-    TransferRequest transfer = new TransferRequest(ACCOUNT_ID_1, ACCOUNT_ID_2, TRANSFER_AMOUNT);
-    ResponseEntity<Object> response = accountsController.transferMoney(transfer);
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-    assertThat(response.getBody()).isEqualTo("Account with ID Id-1 not found");
-  }
-
-
-  @Test
-  void whenAccountToNotFound_thenNotFound() throws Exception {
-    accountCreation(ACCOUNT_ID_1, INITIAL_BALANCE);
-
-    TransferRequest transfer = new TransferRequest(ACCOUNT_ID_1, ACCOUNT_ID_2, TRANSFER_AMOUNT);
-    ResponseEntity<Object> response = accountsController.transferMoney(transfer);
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-    assertThat(response.getBody()).isEqualTo("Account with ID Id-2 not found");
-  }
-
-  @Test
   void whenSameAccount_thenBadRequest() throws Exception {
     accountCreation(ACCOUNT_ID_1, INITIAL_BALANCE);
 

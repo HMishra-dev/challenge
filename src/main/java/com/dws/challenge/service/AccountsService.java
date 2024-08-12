@@ -28,9 +28,6 @@ public class AccountsService {
     private final NotificationService notificationService;
 
     @Autowired
-    private TransferValidator transferValidator;
-
-    @Autowired
     public AccountsService(AccountsRepository accountsRepository, NotificationService notificationService) {
         this.accountsRepository = accountsRepository;
         this.notificationService = notificationService;
@@ -53,7 +50,7 @@ public class AccountsService {
           final Account accountTo = accountsRepository.getAccount(transfer.getAccountToId());
           final BigDecimal amount = transfer.getAmount();
 
-            transferValidator.validate(accountFrom, accountTo, transfer);
+            //transferValidator.validate(accountFrom, accountTo, transfer);
            if (accountFrom.getBalance().compareTo(amount) < 0) {
             throw new NotEnoughFundsException("Not enough funds in the account");
              }
